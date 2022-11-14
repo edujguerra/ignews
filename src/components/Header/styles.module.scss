@@ -29,7 +29,7 @@
             & + a {
                 margin-left: 2rem;
             }
-            
+
             &:hover {
                 color: var(--white);
             }
@@ -51,5 +51,9 @@
             }
         }
 
+    }
+
+    button {
+        margin-left: auto;
     }
 }

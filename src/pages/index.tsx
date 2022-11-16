@@ -3,6 +3,8 @@ import { GetStaticProps } from 'next';
 import styles from './home.module.scss';
 import { SubscribeButton } from '../components/SubscribeButton';
 import { stripe } from '../services/stripe';
+import { useSession} from "next-auth/react";
+import { useState } from 'react';
 
 interface HomeProps {
   product: {
@@ -12,6 +14,8 @@ interface HomeProps {
 }
 
 export default function Home({ product }: HomeProps) {
+  const { data: session } = useSession()
+
   return (
     <>
       <Head>
@@ -26,7 +30,7 @@ export default function Home({ product }: HomeProps) {
             Get access to all the publications <br/>
             <span>for {product.amount} month</span>
           </p>
-          <SubscribeButton priceId={product.priceId}/>
+          <SubscribeButton priceId={product.priceId}/>          
         </section>
 
         <img src="/images/avatar.svg" alt="Girl coding"></img>

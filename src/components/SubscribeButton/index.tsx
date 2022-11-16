@@ -6,9 +6,9 @@ interface SubscribeButton {
 }
 
 export function SubscribeButton({ priceId }:SubscribeButton){
-   // const [session] = useSession();
+    const { data: session, status } = useSession();
 
-    /*function handleSubscribe(){
+    function handleSubscribe(){
         if (!session) {
             signIn('gitHub')
             return;
@@ -16,7 +16,7 @@ export function SubscribeButton({ priceId }:SubscribeButton){
 
         //Criação da checkout
 
-    }*/
+    }
 
     return (
         <button 

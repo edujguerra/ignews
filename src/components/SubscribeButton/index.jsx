@@ -1,11 +1,9 @@
 import { useSession, signIn } from 'next-auth/react';
 import { api } from '../../services/api';
 import { getStripeJs } from '../../services/stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import styles from './styles.module.scss';
 
-//interface SubscribeButton {
-//    priceId: string    
-//}
 
 export function SubscribeButton({ priceId }){
     const { data: session, status } = useSession();
@@ -19,9 +17,9 @@ export function SubscribeButton({ priceId }){
         try {            
             const response = await api.post('/subscribe',{user: session.data});            
             const { sessionId }  =  response.data;
-            const stripe = await getStripeJs;
-            stripe.redirectToCheckout({sessionId: sessionId})
-            return;
+            const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
+            
+            stripe.redirectToCheckout({sessionId })            
         }
         catch (err) {
             alert(err);

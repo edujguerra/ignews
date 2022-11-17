@@ -21,10 +21,10 @@ export function SubscribeButton({ priceId }){
             const { sessionId }  =  response.data;
             const stripe = await getStripeJs;
             stripe.redirectToCheckout({sessionId: sessionId})
-            
+            return;
         }
         catch (err) {
-            alert(JSON.stringify(err));
+            alert(err);
         }
 
     }

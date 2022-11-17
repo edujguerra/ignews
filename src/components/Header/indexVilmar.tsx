@@ -24,7 +24,7 @@ export function Header() {
         {
             id: 4,
             name: "Sobre",
-            onClick: () => alert("Sou o Eduardo")
+            onClick: () => alert("Sou o Eduardo Guerra")
         }
     ]
     return (

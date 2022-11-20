@@ -1,7 +1,29 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import {Readable} from 'stream';
+
+//async function buffer(readable: Readable){
+//    const chunks = [];
+//    for await (const chunk of readable) {
+//        chunk.push(
+//            typeof chunk === "string" ? Buffer.from(chunk) : chunk
+//        )
+//    }
+//
+//    return Buffer.concat(chunks);
+//}
+
+export const config = {
+    api: {
+        bodyParser: false
+    }
+}
 
 export default (req:NextApiRequest,res:NextApiResponse) => {
-    console.log('Evento recebido')
-
-    res.status(200).json({ ok : true })
+    if (req.method==='POST') {
+        //const buf = await buffer(req) 
+        res.status(200).json({ ok : true })
+    } else {
+        res.setHeader('Allow','POST');
+        res.status(405).end('Methos not allowed');
+    }
 }
